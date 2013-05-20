@@ -11,7 +11,7 @@ echo $pageController->getHeader();
 <div data-role="page">
     <?php echo $pageController->getSubHeader(); ?>
         <div data-role="content">
-            <form class="survey-form-1">
+            <form action="product.php" method="get" class="survey-form-1">
                 <div class="ui-grid-solo">
                 <?php
                     echo $form->createRadio('categoryId',$category->getCategories(),'Pick your choice:');
