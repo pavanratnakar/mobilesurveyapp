@@ -27,7 +27,8 @@ class Config{
         'category_meta_table'=>'survey_category_meta',
         'product_table'=>'survey_product',
         'product_flavour'=>'product_flavour',
-        'survey_details'=>'survey_details'
+        'survey_details'=>'survey_details',
+        'questionnaire_table' => 'survey_questionnaire'
     );
     /* TABLES */
 }

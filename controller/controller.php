@@ -5,11 +5,15 @@ class PageController{
     protected $categoryMeta;
     protected $product;
     protected $productFlavour;
+    protected $questionnaire;
     protected $form;
-    public function __construct(){
+    public function __construct($ref=null){
         include_once($_SERVER['DOCUMENT_ROOT'].'/config.class.php');
         include_once(Config::$site_path.'/class/utils.class.php');
         $this->utils=new Utils();
+        if ($ref) {
+            $this->$ref();
+        }
     }
     public function getCategory(){
         include_once(Config::$site_path.'class/category.class.php');
@@ -31,6 +35,32 @@ class PageController{
         $this->productFlavour = new ProductFlavour();
         return $this->productFlavour;
     }
+    public function getQuestionnaire(){
+        include_once(Config::$site_path.'class/questionnaire.class.php');
+        $this->questionnaire = new Questionnaire();
+        return $this->questionnaire;
+    }
+    public function submitQuestionnaire(){
+        $this->getQuestionnaire();
+        $date = new DateTime();
+        $this->questionnaire->addDetails(
+            $this->utils->checkValues($_GET['userId']),
+            $this->utils->checkValues($_GET['productId']),
+            $this->utils->checkValues($_GET['flavourId']),
+            json_encode(array(
+                'question1'=>$this->utils->checkValues($_GET['question1']),
+                'question2'=>$this->utils->checkValues($_GET['question2']),
+                'question3'=>$this->utils->checkValues($_GET['question3']),
+                'question4'=>$this->utils->checkValues($_GET['question4']),
+                'question5'=>$this->utils->checkValues($_GET['question5']),
+                'question6'=>$this->utils->checkValues($_GET['question6']),
+                'question7'=>$this->utils->checkValues($_GET['question7'])
+            )),
+            $this->utils->checkValues($this->utils->ip_address_to_number($_SERVER["REMOTE_ADDR"])),
+            $this->utils->checkValues($_SERVER['HTTP_USER_AGENT']),
+            $this->utils->checkValues($date->getTimestamp())
+        );
+    }
     public function getForm(){
         include_once(Config::$site_path.'class/form.class.php');
         $this->form = new Form();
@@ -48,15 +78,15 @@ class PageController{
                     <meta name="viewport" content="width=device-width, initial-scale=1">
                     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
                     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-                    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
                     <script src="js/script.js"></script>
+                    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
                 </head>
             <body>
         ';
     }
     public function getSubHeader(){
         return '
-            <div data-role="header">
+            <div data-role="header" data-add-back-btn="true">
                 <h1>Mobile Diary</h1>
              </div><!-- /header -->
         ';

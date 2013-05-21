@@ -228,7 +228,7 @@ $answers7 = array(
 <div data-role="page">
     <?php echo $pageController->getSubHeader(); ?>
         <div data-role="content">
-            <form class="survey-form-questioner">
+            <form action="thankyou.php" method="get" class="survey-form-questioner">
                 <div class="ui-grid-solo">
                     <?php echo $form->createRadio('question1',$answers1,'SKU consumed');?>
                     <label for="question2">Quantity consumed</label>
