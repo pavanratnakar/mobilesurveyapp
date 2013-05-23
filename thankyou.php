@@ -8,11 +8,10 @@ echo $pageController->getHeader();
 <div data-role="page">
     <div data-role="header">
         <h1>Mobile Diary</h1>
-        <a href="index.php" data-icon="home" class="ui-btn-right">Submit Again</a>
     </div>
     <div data-role="content">
-    <h2>Thank you for filling the survery.</h2>
-    <a data-mini="true" data-inline="true" href="index.php" data-role="button" data-icon="home">Go back to Home</a>
+    <h2>Would you like to enter another product?</h2>
+    	<a data-mini="true" data-inline="true" href="survey.php" data-role="button" data-icon="home">Yes</a>
     </div>
     <?php echo $pageController->getSubFooter(); ?>
 </div>

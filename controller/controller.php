@@ -69,20 +69,24 @@ class PageController{
     public function getUtils(){
         return $this->utils;
     }
-    public function getHeader(){
-        return '
+    public function getHeader($type=null){
+        $return = '
             <!DOCTYPE html>
             <html>
                 <head>
                     <title>Mobile Diary</title>
                     <meta name="viewport" content="width=device-width, initial-scale=1">
                     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-                    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-                    <script src="js/script.js"></script>
-                    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+                    <link rel="stylesheet" href="css/mobile_diary.min.css" />
+                    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>';
+        if ($type) {
+            $return.=   '<script src="js/'.$type.'.js"></script>';
+        }
+        $return.=   '<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
                 </head>
             <body>
         ';
+        return $return;
     }
     public function getSubHeader(){
         return '
@@ -94,15 +98,27 @@ class PageController{
     public function getSubFooter(){
         return '
             <div data-role="footer">
-                <h4>Thank you for using the application</h4>
+                <h4>TNS</h4>
             </div><!-- /footer -->
         ';
     }
     public function getFooter(){
-        return '
+        return "
+            <script type='text/javascript'>
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-22528464-1']);
+              _gaq.push(['_setDomainName', 'pavanratnakar.com']);
+              _gaq.push(['_trackPageview']);
+
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+            </script>
             </body>
             </html>
-        ';
+        ";
     }
 }
 ?>

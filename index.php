@@ -6,24 +6,14 @@ $category = $pageController->getCategory();
 $category_meta = $pageController->getCategoryMeta();
 $categoryMetaDetails = $category_meta->getCategoryMetas();
 $form = $pageController->getForm();
-echo $pageController->getHeader();
+echo $pageController->getHeader('init');
 ?>
-<div data-role="page">
-    <?php echo $pageController->getSubHeader(); ?>
-        <div data-role="content">
-            <form action="product.php" method="get" class="survey-form-1">
-                <div class="ui-grid-solo">
-                <?php
-                    echo $form->createRadio('categoryId',$category->getCategories(),'Pick your choice:');
-                    $data = array($categoryMetaDetails[0]['id']=>'Yes',$categoryMetaDetails[1]['id']=>'No');
-                    echo $form->createSlider('categoryMetaId',$data,'Is is branded?');
-                ?>
-                </div>
-                <input data-mini="true" data-inline="true" type="submit" value="Submit"/>
-                <input data-mini="true" data-inline="true" type="reset" value="Reset"/>
-            </form>
-        </div><!-- /content -->
-    <?php echo $pageController->getSubFooter(); ?>
+<div data-role="page" id="splash">
+    <div data-role="content">
+        <div class="splash">
+             <img src="img/logo.png" alt="TNS"/>
+        </div>
+    </div><!-- /content -->
 </div>
 <?php
 echo $pageController->getFooter();
