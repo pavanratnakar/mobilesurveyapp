@@ -16,7 +16,7 @@ echo $pageController->getHeader();
                 <?php
                     echo $form->createRadio('categoryId',$category->getCategories(),'Pick your choice:');
                     $data = array($categoryMetaDetails[0]['id']=>'Yes',$categoryMetaDetails[1]['id']=>'No');
-                    echo $form->createSlider('categoryMetaId',$data,'Is is branded?');
+                    echo $form->createSlider('categoryMetaId',$data,'Is it branded?');
                 ?>
                 </div>
                 <input data-mini="true" data-inline="true" type="submit" value="Submit"/>
