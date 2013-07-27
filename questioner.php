@@ -2,11 +2,13 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/config.class.php');
 include_once(Config::$site_path.'controller/controller.php');
 $pageController=new PageController();
+$pageController->onlyLoggedInUserCanAccess();
 $form = $pageController->getForm();
 echo $pageController->getHeader();
 $categoryId = $pageController->getUtils()->checkValues($_GET['categoryId']);
 $productId = $pageController->getUtils()->checkValues($_GET['productId']);
 $flavourId = $pageController->getUtils()->checkValues($_GET['flavourId']);
+$flavourName = $pageController->getUtils()->checkValues($_GET['flavourName']);
 if ($categoryId == 1) {
     $answers1 = array(
         array(
@@ -226,7 +228,7 @@ $answers7 = array(
 );
 ?>
 <div data-role="page">
-    <?php echo $pageController->getSubHeader(); ?>
+    <?php echo $pageController->getSubHeader('logout'); ?>
         <div data-role="content">
             <form action="thankyou.php" method="get" class="survey-form-questioner">
                 <div class="ui-grid-solo">
@@ -243,6 +245,8 @@ $answers7 = array(
                 </div>
                 <input type="hidden" value="<?php echo $productId;?>" name="productId"/>
                 <input type="hidden" value="<?php echo $flavourId;?>" name="flavourId"/>
+                <?php if ($flavourName) ?>
+                <input type="hidden" value="<?php echo $flavourName;?>" name="flavourName"/>
                 <input data-mini="true" data-inline="true" type="submit" value="Submit"/>
                 <input data-mini="true" data-inline="true" type="reset" value="Reset"/>
             </form>

@@ -20,5 +20,16 @@ Class Form{
         $return .= '</select>';
         return $return;
     }
+    public function createCheckBox($name,$data,$question){
+        $return = '<fieldset data-role="controlgroup" >';
+        $return .= '<legend>'.$question.'</legend>';
+        foreach($data as $key=>$value) {
+            $return .= '
+                <input type="checkbox" name="'.$name.'" id="'.$value['name'].'" value="'.$value['id'].'" '.($key===0 ? 'checked="checked"' : '').'>
+                <label for="'.$value['name'].'">'.$value['name'].'</label>';
+        }
+        $return .= '</fieldset>';
+        return $return;
+    }
 }
 ?>

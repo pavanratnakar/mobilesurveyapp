@@ -1,5 +1,5 @@
 $(document).on("pageinit",'#splash',function(){
     setTimeout(function(){
-        $.mobile.changePage("survey.php","fade");
+        $.mobile.changePage($('#splash').data("redirect"),"fade");
     },4000);
 });

@@ -2,15 +2,16 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/config.class.php');
 include_once(Config::$site_path.'controller/controller.php');
 $pageController=new PageController();
+$pageController->onlyLoggedInUserCanAccess();
 $product = $pageController->getProduct();
 $productFlavour = $pageController->getProductFlavour();
 $form = $pageController->getForm();
-echo $pageController->getHeader();
+echo $pageController->getHeader('listSelect');
 $categoryId = $pageController->getUtils()->checkValues($_GET['categoryId']);
 $categoryMetaId = $pageController->getUtils()->checkValues($_GET['categoryMetaId']);
 ?>
 <div data-role="page">
-    <?php echo $pageController->getSubHeader(); ?>
+    <?php echo $pageController->getSubHeader('logout'); ?>
         <div data-role="content">
             <div data-role="collapsible-set" data-theme="b" data-content-theme="d">
                 <?php
@@ -35,6 +36,19 @@ $categoryMetaId = $pageController->getUtils()->checkValues($_GET['categoryMetaId
                                 </a>
                             </li>';
                         }
+                        echo '
+                            <li class="list-select">
+                                <label for="other">If any other please enter here</label>
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="text" name="other" id="other" placeholder="Other">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <button data-url="questioner.php?categoryId='.$categoryId.'&productId='.$value['id'].'" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="c" data-inline="true">Arrow Right</button>
+                                    </div>
+                                </div>
+                            </li>
+                        ';
                         echo '</ul>';
                     }
                     echo '</div>';

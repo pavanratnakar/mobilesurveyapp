@@ -2,6 +2,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/config.class.php');
 include_once(Config::$site_path.'controller/controller.php');
 $pageController=new PageController();
+$pageController->onlyLoggedInUserCanAccess();
 $category = $pageController->getCategory();
 $category_meta = $pageController->getCategoryMeta();
 $categoryMetaDetails = $category_meta->getCategoryMetas();
@@ -9,7 +10,7 @@ $form = $pageController->getForm();
 echo $pageController->getHeader();
 ?>
 <div data-role="page">
-    <?php echo $pageController->getSubHeader(); ?>
+    <?php echo $pageController->getSubHeader('logout'); ?>
         <div data-role="content">
             <form action="product.php" method="get" class="survey-form-1">
                 <div class="ui-grid-solo">
