@@ -3,7 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/config.class.php');
 include_once(Config::$site_path.'controller/controller.php');
 $pageController=new PageController();
 $form = $pageController->getForm();
-echo $pageController->getHeader('init');
+echo $pageController->getHeader('register');
 $mode = array(
         array(
             'id'=>'Cellphone',
@@ -160,16 +160,16 @@ $buyfrom = array(
         )
     );
 ?>
-<div data-role="page">
+<div data-role="page" id="register">
     <?php echo $pageController->getSubHeader(); ?>
     <div data-role="content">
-        <form action="login.php" id="user-registration" method="post">
+        <form action="login.php" id="register-form" method="post">
             <label for="userName">Name</label>
-            <input type="text" name="userName" id="userName" value="">
+            <input type="text" name="userName" id="userName" value="" class="required">
             <label for="userEmail">Email</label>
-            <input type="email" data-clear-btn="false" name="userEmail" id="userEmail" value="">
+            <input type="email" data-clear-btn="false" name="userEmail" id="userEmail" value="" class="required email">
             <label for="userPhone">Phone</label>
-            <input type="tel" data-clear-btn="false" name="userPhone" id="userPhone" value="">
+            <input type="tel" data-clear-btn="false" name="userPhone" id="userPhone" value="" class="required phone">
             <?php echo $form->createRadio('mode',$mode,'Mode of login');?>
             <?php echo $form->createRadio('members',$members,'Number of members in family');?>
             <?php echo $form->createRadio('income',$income,'Monthly house hold income (Income from all memebers of the family currently residing, which includes salaries, rents, interests, pensions and tax benifits)');?>

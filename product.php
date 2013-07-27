@@ -6,11 +6,11 @@ $pageController->onlyLoggedInUserCanAccess();
 $product = $pageController->getProduct();
 $productFlavour = $pageController->getProductFlavour();
 $form = $pageController->getForm();
-echo $pageController->getHeader('listSelect');
+echo $pageController->getHeader('product');
 $categoryId = $pageController->getUtils()->checkValues($_GET['categoryId']);
 $categoryMetaId = $pageController->getUtils()->checkValues($_GET['categoryMetaId']);
 ?>
-<div data-role="page">
+<div data-role="page" id="product">
     <?php echo $pageController->getSubHeader('logout'); ?>
         <div data-role="content">
             <div data-role="collapsible-set" data-theme="b" data-content-theme="d">

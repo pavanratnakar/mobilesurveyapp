@@ -148,6 +148,9 @@ class PageController{
                     <link rel="stylesheet" href="css/mobile_diary.min.css" />
                     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
                     <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>';
+        if ($type==='login' || $type==='register') {
+            $return.= '<script src="js/jquery.validate.min.js"></script>';
+        }
         if ($type) {
             $return.= '<script src="js/'.$type.'.js"></script>';
         }
